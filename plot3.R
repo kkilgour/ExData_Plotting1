@@ -12,7 +12,9 @@ d[,'datetime'] <- dts
 d[,'Date'] <- as.Date(d[,'Date'], "%d/%m/%Y")
 d <- subset(d, Date==as.Date('2007-2-2') | Date==as.Date('2007-02-01'))
 
-#png('plot3.png')
-#plot.ts(d[,'datetime'], y=d[,'Global_active_power'], type='l', ylab='Global Active Power (kilowatts)', xlab='')
-plot.ts(c(d[,'datetime'],d[,'datetime'],d[,'datetime']), y=c(d[,'Sub_metering_1'],d[,'Sub_metering_2'],d[,'Sub_metering_3']), plot.type = 'multiple', type='l', ylab='Energy Sub Metering', xlab='', col=c('BLACK', 'BLUE', 'RED'))
-#dev.off()
+png('plot3.png')
+with(d, plot(datetime, Sub_metering_1, type='l', ylab='Energy sub metering', xlab=''))
+with(d, lines(datetime, Sub_metering_2, type='l', col='red'))
+with(d, lines(datetime, Sub_metering_3, type='l', col='blue'))
+legend("topright", lty=1, col=c("black","red","blue"), legend=c('Sub_metering_1','Sub_metering_2','Sub_metering_3'))
+dev.off()
