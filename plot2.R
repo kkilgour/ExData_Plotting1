@@ -13,6 +13,5 @@ d[,'Date'] <- as.Date(d[,'Date'], "%d/%m/%Y")
 d <- subset(d, Date==as.Date('2007-2-2') | Date==as.Date('2007-02-01'))
 
 png('plot2.png')
-plot.ts(d[,'datetime'], y=d[,'Global_active_power'], type='l', ylab='Global Active Power (kilowatts)', xlab='')
-#hist(d[,'Global_active_power'], col="RED", main="Global Active Power", xlab="Global Active Power (kilowatts)", plot=TRUE)
+with(d, plot(datetime, Global_active_power, type='l', ylab='GLobal Active Power (kilowatts)', xlab=''))
 dev.off()
